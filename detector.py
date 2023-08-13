@@ -43,10 +43,10 @@ if __name__ == '__main__':
     
     while True:
         
-        # Aqui manipularemos o frame e retornar o frame com o desenho da mão
-        img = Detector.find_hands(img, draw_hands = True)
-            
         _, img = capture.read()
+        
+        # Aqui manipularemos o frame e retornar o frame com o desenho da mão
+        img = Detector.find_hands(img)
         
         cv2.imshow("imagem do Thierry", img)
         
