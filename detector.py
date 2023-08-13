@@ -19,14 +19,33 @@ class VisionDetector:
         self.hands = self.mp_hands.Hands(self.mode, self.max_num_hands, self.complexity, self.detection_con, self.tracking_con)
         self.mp_draw = mp.solutions.drawing_utils
         
+    def find_hands(self, img: np.ndarray, draw_hands: bool = True):
+        
+        # Correção de cor BGR em RGB
+        img_RGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        
+        # Coletar resultados do processo das hands e analizar
+        self.results = self.hands.process(img_RGB)
+        if self.results.multi_hands_landmarks:
+            for hand in self.results.multi_hands_landmarks:
+                if draw_hands:
+                    self.mp_draw.draw_landmarks(img, hand, self.mp_hands.HANDS_CONNECTIONS)
+        
+        return img
+    
     
         
 if __name__ == '__main__':
     
     capture = cv2.VideoCapture(0)
 
+    Detector = VisionDetector()
+    
     while True:
         
+        # Aqui manipularemos o frame e retornar o frame com o desenho da mão
+        img = Detector.find_hands(img, draw_hands = True)
+            
         _, img = capture.read()
         
         cv2.imshow("imagem do Thierry", img)
