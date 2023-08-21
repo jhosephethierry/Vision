@@ -26,8 +26,8 @@ class VisionDetector:
         
         # Coletar resultados do processo das hands e analizar
         self.results = self.hands.process(img_RGB)
-        if self.results.multi_hands_landmarks:
-            for hand in self.results.multi_hands_landmarks:
+        if self.results.multi_hand_landmarks:
+            for hand in self.results.multi_hand_landmarks:
                 if draw_hands:
                     self.mp_draw.draw_landmarks(img, hand, self.mp_hands.HANDS_CONNECTIONS)
         
