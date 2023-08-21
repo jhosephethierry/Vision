@@ -29,10 +29,11 @@ class VisionDetector:
         if self.results.multi_hand_landmarks:
             for hand in self.results.multi_hand_landmarks:
                 if draw_hands:
-                    self.mp_draw.draw_landmarks(img, hand, self.mp_hands.HANDS_CONNECTIONS)
+                    self.mp_draw.draw_landmarks(img, hand, self.mp_hands.HAND_CONNECTIONS)
         
         return img
     
+   
     
         
 if __name__ == '__main__':
