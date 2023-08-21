@@ -47,19 +47,8 @@ while True:
                 print(id, cx, cy)
                 
             # Desenhando circulos nas pontas dos dedos
-            if id == 4:
-                cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)
             if id == 8:
                 cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)
-            if id == 12:
-                cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)
-            if id == 16:
-                cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)
-            if id == 20:
-                cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)
-            if id == 0:
-                cv2.circle(image, (cx,cy), 15, (255,7,255), cv2.FILLED)    
-                
                 
             mp_draw.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
             
