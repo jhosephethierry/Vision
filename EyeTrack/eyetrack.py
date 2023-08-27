@@ -3,6 +3,7 @@ import mediapipe as mp
 import pyautogui
 
 pyautogui.FAILSAFE = False
+sensibilidade_do_modelo = 3
 
 # Lendo a câmera e inicializando as solução
 cam = cv2.VideoCapture(0)
@@ -44,15 +45,15 @@ while True:
             # Ignorar código do mouse
             pass
         else:
-            pass
-        
-        # Iterando landmarks rosto
-        for lm in landmarks:
-            x = int(lm.x * frame_w)
-            y = int(lm.y * frame_h)
+            # Landmarks da Iris
+            iris_principal = iris_and_mouth[0]
+              
+            # Adaptar formato de x, y para pixels
+            x = int(iris_principal.x * frame_w) * sensibilidade_do_modelo
+            y = int(iris_principal.y * frame_h) * sensibilidade_do_modelo
             
-            # Desenhando landmarks
-            cv2.circle(img, (x,y), 1, (255,0,255))
+            # Movendo ponteiro do mouse        
+            pyautogui.moveTo(x, y)
         
         # Iterando landmarks necessários    
         for lm in iris_and_mouth:
@@ -61,6 +62,14 @@ while True:
             
             # Desenhando landmarks
             cv2.circle(img, (x,y), 4, (255,255,0))
+            
+        # Iterando landmarks rosto
+        for lm in landmarks:
+            x = int(lm.x * frame_w)
+            y = int(lm.y * frame_h)
+            
+            # Desenhando landmarks
+            cv2.circle(img, (x,y), 1, (255,0,255))
     
     # Mostrando Visão
     cv2.imshow('Visao', img)
