@@ -33,10 +33,34 @@ while True:
     if landmark_points:
         landmarks = landmark_points[0].landmark
         
+        # Identificando pontos necessários
+        iris_and_mouth = [landmarks[145], landmarks[159], landmarks[14], landmarks[13]]
+        
+        # Checando se a boca está aberta
+        distancia_da_boca = iris_and_mouth[-2].y - iris_and_mouth[-1].y
+        
+        # Manipulando
+        if distancia_da_boca > 0.04:
+            # Ignorar código do mouse
+            pass
+        else:
+            pass
+        
+        # Iterando landmarks rosto
         for lm in landmarks:
             x = int(lm.x * frame_w)
             y = int(lm.y * frame_h)
-            cv2.circle(img, (x,y), 2, (255,255,0))
+            
+            # Desenhando landmarks
+            cv2.circle(img, (x,y), 1, (255,0,255))
+        
+        # Iterando landmarks necessários    
+        for lm in iris_and_mouth:
+            x = int(lm.x * frame_w)
+            y = int(lm.y * frame_h)
+            
+            # Desenhando landmarks
+            cv2.circle(img, (x,y), 4, (255,255,0))
     
     # Mostrando Visão
     cv2.imshow('Visao', img)
