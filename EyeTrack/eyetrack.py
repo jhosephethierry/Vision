@@ -54,7 +54,18 @@ while True:
             
             # Movendo ponteiro do mouse        
             pyautogui.moveTo(x, y)
-        
+            
+            # Checando se a olho está fechado
+            distancia_da_iris = iris_and_mouth[0].y - iris_and_mouth[1].y
+            
+            if distancia_da_iris < 0.008:
+                
+                # Clicando se estiver fechado    
+                pyautogui.click()
+                pyautogui.sleep(1)
+            else:
+                pass
+            
         # Iterando landmarks necessários    
         for lm in iris_and_mouth:
             x = int(lm.x * frame_w)
