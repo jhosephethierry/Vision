@@ -25,9 +25,22 @@ while True:
     # Convertendo BGR para RGB
     rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     
+    # Coletando e Armazenando resultados
+    results = face_mesh.process(rgb_img)
+    landmark_points = results.multi_face_landmarks
+    
+    # Checando se existem os landmarks
+    if landmark_points:
+        landmarks = landmark_points[0].landmark
+        
+        for lm in landmarks:
+            x = int(lm.x * frame_w)
+            y = int(lm.y * frame_h)
+            cv2.circle(img, (x,y), 2, (255,255,0))
+    
     # Mostrando Visão
     cv2.imshow('Visao', img)
     
-    # Esperando a tecla "q"
+    # Esperando a tecla "q" pra encerrar o programa
     if cv2.waitKey(20) & 0xFF==ord('q'):
         break
