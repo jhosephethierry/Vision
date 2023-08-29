@@ -3,7 +3,7 @@ import mediapipe as mp
 import pyautogui
 
 pyautogui.FAILSAFE = False
-sensibilidade_do_modelo = 3
+sensibilidade_do_modelo = 2
 
 # Lendo a câmera e inicializando as solução
 cam = cv2.VideoCapture(0)
