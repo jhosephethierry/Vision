@@ -14,7 +14,7 @@ tela_w, tela_h = pyautogui.size()
 
 # Coletar especificações da nossa câmera
 _, frame = cam.read()
-frame_h, frame_w, _ = frame.shape
+frame_h, frame_w, __annotations__ = frame.shape
 
 # Loop principal
 while True:
